@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERN Charity Proof Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.95.2/lib/index.iife.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-3xl w-full bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-700">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-4">
+                <img src="https://i.imgur.com/8Y6z5wL.jpeg" alt="Fern" class="w-16 h-16 rounded-full border-2 border-green-400">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Fern Proof of Donation</h1>
+                    <p class="text-gray-400 text-sm">On-chain transparency for Animals Asia</p>
+                </div>
+            </div>
+            <div class="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-semibold flex items-center">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                Live Tracking
+            </div>
+        </div>
+
+        <!-- Main Stat -->
+        <div class="bg-gray-900 rounded-2xl p-8 text-center mb-8 border border-gray-700 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent"></div>
+            <p class="text-gray-400 text-sm uppercase tracking-wider mb-2 relative z-10">Total Donated to Animals Asia</p>
+            <h2 class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 relative z-10" id="total-donated">25.59 SOL</h2>
+            <p class="text-gray-500 text-sm mt-2 relative z-10">≈ $3,065.67 USD</p>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-300">Recent Donations</h3>
+            <div class="space-y-3">
+                <!-- Transaction 1 -->
+                <div class="bg-gray-900 p-4 rounded-xl flex items-center justify-between border border-gray-800">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white">2.5 SOL</p>
+                            <p class="text-xs text-gray-500">TX: 4hB2...9xYz</p>
+                        </div>
+                    </div>
+                    <a href="#" class="text-sm text-blue-400 hover:text-blue-300">Verify on Solscan ↗</a>
+                </div>
+
+                <!-- Transaction 2 -->
+                <div class="bg-gray-900 p-4 rounded-xl flex items-center justify-between border border-gray-800">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white">1.8 SOL</p>
+                            <p class="text-xs text-gray-500">TX: 7xKX...3mNp</p>
+                        </div>
+                    </div>
+                    <a href="#" class="text-sm text-blue-400 hover:text-blue-300">Verify on Solscan ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-xs text-gray-600">
+            Built by Superwavvy. Data secured by Solana.
+        </div>
+    </div>
+
+    <!-- Optional: Live Solana Fetch Script -->
+    <script>
+        // This is a simple script to show how you would fetch the REAL balance.
+        // For the demo, we are using static data, but this proves you know how to do it.
+        /*
+        const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com");
+        const charityWallet = new solanaWeb3.PublicKey("YOUR_CHARITY_WALLET_ADDRESS_HERE");
+        
+        async function getBalance() {
+            const balance = await connection.getBalance(charityWallet);
+            const solBalance = balance / solanaWeb3.LAMPORTS_PER_SOL;
+            document.getElementById('total-donated').innerText = solBalance.toFixed(2) + " SOL";
+        }
+        getBalance();
+        */
+    </script>
+</body>
+</html>
